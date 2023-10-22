@@ -88,8 +88,12 @@ export function extractCurrency(element: any) {
   };
 
 
-  export const getEmailNotificationType=(scrapedProduct:Product,currentProduct:Product)=>{
-    const lowestPrice=getLowestPrice(currentProduct.priceHistory);
+  export const getEmailNotifType = (
+    scrapedProduct: Product,
+    currentProduct: Product
+  ) => {
+    const lowestPrice = getLowestPrice(currentProduct.priceHistory);
+  
     if (scrapedProduct.currentPrice < lowestPrice) {
       return Notification.LOWEST_PRICE as keyof typeof Notification;
     }
@@ -101,5 +105,5 @@ export function extractCurrency(element: any) {
     }
   
     return null;
-
-  }
+  };
+  

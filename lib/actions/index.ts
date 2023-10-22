@@ -6,7 +6,7 @@ import { scrapeAmazonProduct } from "../scraper";
 import { getAveragePrice, getHighestPrice, getLowestPrice } from "./utils";
 import { revalidatePath } from "next/cache";
 import { User } from "@/types";
-import { SendEMail, generateEmailBody } from "../nodemailer";
+import { sendEmail, generateEmailBody } from "../nodemailer";
 export async function scrapeAndStoreProduct(productUrl:string){
     if(!productUrl){
         return;
@@ -92,7 +92,7 @@ try {
 
     await product.save();
     const emailContent=await generateEmailBody(product,'WELCOME');
-    await SendEMail(emailContent,[userEmail]);
+    await sendEmail(emailContent,[userEmail]);
    }
 } catch (error) {
     console.log(error)
